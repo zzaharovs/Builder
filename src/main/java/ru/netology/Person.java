@@ -1,14 +1,18 @@
 package ru.netology;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Person {
 
     private final String name;
     private final String surname;
     private int age;
     private String address;
+
+    public Person(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+        this.age = -1;
+        this.address = "Unknown";
+    }
 
     public Person(String name, String surname, int age, String address) {
         this.name = name;
@@ -45,9 +49,7 @@ public class Person {
     public int getAge() {
 
         if (!hasAge()) {
-
-            setAge();
-
+            throw new IllegalStateException("Возраст не указан!");
         }
 
         return age;
@@ -70,35 +72,11 @@ public class Person {
 
     }
 
-    private void setAge() {
-
-        System.out.println("Возраст не задан! Необходимо установить возраст");
-
-        while (true) {
-
-            try {
-
-                System.out.println("Введите целое число больше нуля");
-                Scanner scan = new Scanner(System.in);
-                int age = scan.nextInt();
-
-                if (age >= 0) {
-
-                    this.age = age;
-                    break;
-
-                }
-
-            } catch (InputMismatchException ignored) {
-
-            }
-        }
-    }
 
     public void happyBirthday() {
 
         if (!hasAge()) {
-            setAge();
+            throw new IllegalStateException("Возраст не указан!");
         }
 
         this.age++;
@@ -107,11 +85,9 @@ public class Person {
 
     public PersonBuilder newChildBuilder() {
 
-        PersonBuilder child = new PersonBuilder();
-        child.setSurname(this.surname);
-        child.setAddress(this.address);
-
-        return child;
+        return new PersonBuilder()
+                .setSurname(this.surname)
+                .setAddress(this.address);
 
     }
 

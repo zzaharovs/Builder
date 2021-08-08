@@ -1,6 +1,5 @@
 package ru.netology;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +17,6 @@ public class PersonBuilderTest {
         //given
 
         final Person testPerson;
-        final int expectedResult = age;
 
         final String name = "Ivan";
         final String surname = "Ivanov";
@@ -33,7 +31,7 @@ public class PersonBuilderTest {
 
         //when
 
-        Assertions.assertEquals(expectedResult, testPerson.getAge());
+        Assertions.assertEquals(age, testPerson.getAge());
 
 
     }
@@ -53,7 +51,7 @@ public class PersonBuilderTest {
 
         //when
 
-        assertThrows(IllegalArgumentException.class, testPerson::build);
+        assertThrows(IllegalStateException.class, testPerson::build);
 
     }
 
@@ -70,7 +68,7 @@ public class PersonBuilderTest {
 
         //when
 
-        assertThrows(IllegalArgumentException.class, testPerson::build);
+        assertThrows(IllegalStateException.class, testPerson::build);
 
     }
 

@@ -54,17 +54,11 @@ public class PersonBuilder {
     public Person build() {
 
         if (this.name == null) {
-
-            throw new IllegalArgumentException("Не заполнено обязательное поле 'Имя'");
-
+            throw new IllegalStateException("Не заполнено обязательное поле 'Имя'");
         } else if (this.surname == null) {
-
-            throw new IllegalArgumentException("Не заполнено обязательное поле 'Фамилия'");
-
+            throw new IllegalStateException("Не заполнено обязательное поле 'Фамилия'");
         }
 
         return new Person(this.name, this.surname, this.age, this.address);
-
-
     }
 }

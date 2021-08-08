@@ -32,11 +32,15 @@ public class Main {
 
         System.out.println("_______________________________________________________");
 
-        //Смотрим сколько лет сыну
-        System.out.println("Сколько лет сыну знаете только вы");
-        System.out.println("Ему " + son.getAge());
+        try {
+            // Пробуем получить возраст у сына
+            son.getAge();
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("_______________________________________________________");
+
 
         //Смотрим в каком городе живет Константин
 
@@ -50,7 +54,7 @@ public class Main {
         try {
             // Проверяем на нехватку обязательных полей
             new PersonBuilder().build();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
 
